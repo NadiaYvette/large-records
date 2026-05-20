@@ -1,7 +1,7 @@
 cabal-version:      2.4
 build-type:         Simple
 name:               typelet
-version:            0.1.6.1
+version:            0.1.7
 synopsis:           Plugin to faciliate type-level let
 description:        For a certain class of programs, type-level let is essential
                     in order to be able to write these programs in such a way
@@ -42,10 +42,10 @@ library
         TypeLet.Plugin.NameResolution
         TypeLet.Plugin.Substitution
     build-depends:
-      , base             >= 4.14   && < 4.23
-      , containers       >= 0.6    && < 0.9
-      , ghc              >= 8.10   && < 9.15
-      , ghc-tcplugin-api >= 0.18.2 && < 0.20
+      , base             >= 4.14 && < 4.23
+      , containers       >= 0.6  && < 0.9
+      , ghc              >= 8.10 && < 9.15
+      , ghc-tcplugin-api >= 0.19 && < 0.20
     hs-source-dirs:
         src
     default-language:

@@ -1,4 +1,3 @@
-{-# LANGUAGE CPP #-}
 module TypeLet.Plugin (plugin) where
 
 import Prelude hiding (cycle)
@@ -23,12 +22,8 @@ plugin = defaultPlugin {
                                tcPluginInit    = resolveNames
                              , tcPluginSolve   = solve
                              , tcPluginRewrite = \_st -> emptyUFM
-#if MIN_VERSION_ghc_tcplugin_api(0,19,0)
                              , tcPluginPostTc  = \_st -> return ()
                              , tcPluginShutdown = \_st -> return ()
-#else
-                             , tcPluginStop    = \_st -> return ()
-#endif
                              }
     }
 
