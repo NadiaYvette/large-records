@@ -1,5 +1,9 @@
 # Revision history for large-records
 
+## 0.4.5 -- 2026-05-20
+
+* Support ghc 9.14
+
 ## 0.4.4 -- 2025-09-19
 
 * Generate `optics-core` `LabelOptic` instances.
