@@ -111,6 +111,10 @@ library
     cpp-options:
       -DDEBUG
 
+  if flag(enable-core-lint)
+    ghc-options:
+      -dcore-lint
+
 test-suite test-large-anon
   default-language:
       Haskell2010
@@ -179,8 +183,6 @@ test-suite test-large-anon
     , typelet
     , validation-selective
   ghc-options:
-      -dcore-lint
-  ghc-options:
       -Wall
       -Wredundant-constraints
       -Wno-unticked-promoted-constructors
@@ -196,7 +198,16 @@ test-suite test-large-anon
     cpp-options:
       -DNO_RECORD_DOT_PREPROCESSOR
 
+  if flag(enable-core-lint)
+    ghc-options:
+      -dcore-lint
+
 Flag debug
   Description: Enable internal debugging features
+  Default: False
+  Manual: True
+
+Flag enable-core-lint
+  Description: Debugging: Enable GHC's core linter
   Default: False
   Manual: True
