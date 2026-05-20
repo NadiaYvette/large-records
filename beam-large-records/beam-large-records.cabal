@@ -39,12 +39,13 @@ library
       Data.Record.Beam.ZipDatabase
       Data.Record.Beam.ZipTables
   build-depends:
-      -- lower bound on beam-core is necessary
-      -- see https://github.com/haskell-beam/beam/issues/585
       base           >= 4.14     && < 4.24
-    , beam-core      >= 0.11     && < 0.12
     , large-generics >= 0.2      && < 0.3
     , microlens      >= 0.4      && < 0.6
+
+      -- lower bound on beam-core is necessary
+      -- see https://github.com/haskell-beam/beam/issues/585
+    , beam-core      >= 0.11     && < 0.12
   hs-source-dirs:
       src
   default-language:

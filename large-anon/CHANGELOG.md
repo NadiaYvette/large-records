@@ -1,5 +1,10 @@
 # Revision history for large-anon
 
+## 0.3.4 -- 2026-05-20
+
+* Support ghc 9.14
+* Use ghc-tcplugin-api 0.19
+
 ## 0.3.3 -- 2025-07-19
 
 * Support ghc 9.8 (Gabriele Sales)
