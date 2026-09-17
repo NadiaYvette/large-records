@@ -15,6 +15,7 @@ import qualified Test.Record.Sanity.PatternMatch
 import qualified Test.Record.Sanity.QualifiedImports
 import qualified Test.Record.Sanity.Optics.SingleModule
 import qualified Test.Record.Sanity.Optics.SplitModule
+import qualified Test.Record.Sanity.Interop
 import qualified Test.Record.Sanity.RecordConstruction
 import qualified Test.Record.Sanity.Strictness
 import qualified Test.Record.Sanity.StrictnessStrictData
@@ -40,6 +41,7 @@ tests = testGroup "Tests" [
         , Test.Record.Sanity.QualifiedImports.tests
         , Test.Record.Sanity.Optics.SplitModule.tests
         , Test.Record.Sanity.Optics.SingleModule.tests
+        , Test.Record.Sanity.Interop.tests
 #if HAS_RDP
         , Test.Record.Sanity.RDP.SplitModule.tests
         , Test.Record.Sanity.RDP.SingleModule.tests

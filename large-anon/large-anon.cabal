@@ -26,10 +26,18 @@ library
   exposed-modules:
       Data.Record.Anon
       Data.Record.Anon.Advanced
+      Data.Record.Anon.CBOR
+      Data.Record.Anon.DocRecord
+      Data.Record.Anon.JSON
+      Data.Record.Anon.Optics
       Data.Record.Anon.Overloading
       Data.Record.Anon.Plugin
       Data.Record.Anon.Plugin.Internal.Runtime
+      Data.Record.Anon.Protobuf
+      Data.Record.Anon.Serialise
       Data.Record.Anon.Simple
+      Data.Record.Anon.Soup
+      Data.Record.Anon.Vinyl
 
   other-modules:
       -- Module organization:
@@ -77,24 +85,31 @@ library
       Data.Record.Anon.Internal.Plugin.Source.Options
 
   build-depends:
-    , aeson            >= 1.4.4  && < 2.3
-    , base             >= 4.14   && < 4.23
-    , containers       >= 0.6.2  && < 0.9
-    , deepseq          >= 1.4.4  && < 1.6
-    , ghc              >= 8.10   && < 9.15
-    , ghc-tcplugin-api >= 0.19   && < 0.20
-    , hashable         >= 1.3    && < 1.6
-    , mtl              >= 2.2.1  && < 2.4
-    , optics-core      >= 0.3    && < 0.5
-    , primitive        >= 0.8    && < 0.10
-    , record-hasfield  >= 1.0    && < 1.1
-    , sop-core         >= 0.5    && < 0.6
-    , syb              >= 0.7    && < 0.8
-    , tagged           >= 0.8.6  && < 0.9
-    , typelet          >= 0.1    && < 0.2
+    , aeson                >= 1.4.4  && < 2.3
+    , base                 >= 4.14   && < 4.23
+    , bytestring           >= 0.10   && < 0.13
+    , cborg                >= 0.2.10 && < 0.3
+    , containers           >= 0.6.2  && < 0.9
+    , deepseq              >= 1.4.4  && < 1.6
+    , ghc                  >= 8.10   && < 9.15
+    , ghc-tcplugin-api     >= 0.19   && < 0.20
+    , hashable             >= 1.3    && < 1.6
+    , mtl                  >= 2.2.1  && < 2.4
+    , optics-core          >= 0.3    && < 0.5
+    , optparse-applicative >= 0.16   && < 0.19
+    , primitive            >= 0.8    && < 0.10
+    , record-hasfield      >= 1.0    && < 1.1
+    , serialise            >= 0.2.6  && < 0.3
+    , sop-core             >= 0.5    && < 0.6
+    , syb                  >= 0.7    && < 0.8
+    , tagged               >= 0.8.6  && < 0.9
+    , text                 >= 1.2    && < 2.2
+    , transformers         >= 0.5.6  && < 0.7
+    , typelet              >= 0.1    && < 0.2
+    , vinyl                >= 0.13   && < 0.15
 
       -- large-generics 0.2 starts using 'SmallArray' instead of 'Vector'
-    , large-generics   >= 0.2   && < 0.3
+    , large-generics       >= 0.2    && < 0.3
   hs-source-dirs:
       src
   default-language:
@@ -145,6 +160,7 @@ test-suite test-large-anon
       Test.Sanity.DuplicateFields
       Test.Sanity.Generics
       Test.Sanity.HasField
+      Test.Sanity.Interop
       Test.Sanity.Intersection
       Test.Sanity.Merging
       Test.Sanity.Named.Record1
@@ -166,14 +182,17 @@ test-suite test-large-anon
     , arrows
     , base
     , bytestring
+    , cborg
     , containers
     , large-anon
     , large-generics
     , mtl
     , optics-core
+    , optparse-applicative
     , parsec
     , QuickCheck
     , record-hasfield
+    , serialise
     , sop-core
     , Stream
     , tasty
@@ -182,6 +201,7 @@ test-suite test-large-anon
     , text
     , typelet
     , validation-selective
+    , vinyl
   ghc-options:
       -Wall
       -Wredundant-constraints

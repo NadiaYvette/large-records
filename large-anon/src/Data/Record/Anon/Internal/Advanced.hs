@@ -70,6 +70,8 @@ module Data.Record.Anon.Internal.Advanced (
   , InRow(..)
   , reifySubRow
   , reflectSubRow
+    -- * Constraints
+  , RecordConstraints
     -- * Existential records
   , Some(..)
   , SomeRecord(..)
@@ -103,10 +105,12 @@ import qualified Optics.Core        as Optics
 import qualified GHC.Records        as Base
 import qualified GHC.Records.Compat as RecordHasfield
 
-import qualified Data.Record.Generic.Eq     as Generic
-import qualified Data.Record.Generic.JSON   as Generic
-import qualified Data.Record.Generic.NFData as Generic
-import qualified Data.Record.Generic.Show   as Generic
+import qualified Data.Record.Generic.Eq        as Generic
+import qualified Data.Record.Generic.JSON      as Generic
+import qualified Data.Record.Generic.NFData    as Generic
+import qualified Data.Record.Generic.Serialise as Generic
+import qualified Data.Record.Generic.Show      as Generic
+import Codec.Serialise (Serialise(..))
 
 import Data.Record.Anon.Internal.Core.Canonical (Canonical)
 import Data.Record.Anon.Internal.Core.Diff (Diff)
@@ -606,6 +610,10 @@ instance RecordConstraints f r ToJSON => ToJSON (Record f r) where
 
 instance RecordConstraints f r FromJSON => FromJSON (Record f r) where
   parseJSON = Generic.gparseJSON
+
+instance RecordConstraints f r Serialise => Serialise (Record f r) where
+  encode = Generic.gencode
+  decode = Generic.gdecode
 
 {-------------------------------------------------------------------------------
   Constrained combinators

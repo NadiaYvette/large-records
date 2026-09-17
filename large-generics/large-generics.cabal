@@ -34,13 +34,18 @@ library
       -- Interop with other generics approaches
       Data.Record.Generic.GHC
       Data.Record.Generic.SOP
+      Data.Record.Generic.Vinyl
 
       -- Specific generic functions
+      Data.Record.Generic.CBOR
       Data.Record.Generic.Eq
       Data.Record.Generic.JSON
       Data.Record.Generic.Lens.VL
       Data.Record.Generic.LowerBound
       Data.Record.Generic.NFData
+      Data.Record.Generic.Optics
+      Data.Record.Generic.Protobuf
+      Data.Record.Generic.Serialise
       Data.Record.Generic.Show
   default-language:
       Haskell2010
@@ -53,10 +58,17 @@ library
   build-depends:
       base         >= 4.14  && < 4.23
     , aeson        >= 1.4.4 && < 2.3
+    , bytestring   >= 0.10  && < 0.13
+    , cborg        >= 0.2.4 && < 0.3
+    , containers   >= 0.6   && < 0.9
     , deepseq      >= 1.4.4 && < 1.6
     , generics-sop >= 0.5   && < 0.6
-    , sop-core     >= 0.5   && < 0.6
+    , optics-core  >= 0.4   && < 0.5
     , primitive    >= 0.7.3 && < 0.10
+    , serialise    >= 0.2.3 && < 0.3
+    , sop-core     >= 0.5   && < 0.6
+    , text         >= 1.2   && < 2.2
+    , vinyl        >= 0.13  && < 0.15
 
 test-suite test-large-generics
   type:
@@ -71,6 +83,7 @@ test-suite test-large-generics
       Test.Record.Generic.Prop.Show
       Test.Record.Generic.Prop.ToFromJSON
       Test.Record.Generic.Sanity.GhcGenerics
+      Test.Record.Generic.Sanity.Interop
       Test.Record.Generic.Sanity.Laziness
       Test.Record.Generic.Sanity.Lens.VL
       Test.Record.Generic.Sanity.Rep
@@ -88,12 +101,17 @@ test-suite test-large-generics
     , large-generics
 
     , aeson
+    , bytestring
+    , cborg
     , generic-deriving
     , generics-sop
     , microlens
     , mtl
+    , optics-core
     , QuickCheck
+    , serialise
     , sop-core
     , tasty
     , tasty-hunit
     , tasty-quickcheck
+    , vinyl

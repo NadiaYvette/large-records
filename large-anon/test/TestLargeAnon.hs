@@ -13,6 +13,7 @@ import qualified Test.Sanity.Discovery
 import qualified Test.Sanity.DuplicateFields
 import qualified Test.Sanity.Generics
 import qualified Test.Sanity.HasField
+import qualified Test.Sanity.Interop
 import qualified Test.Sanity.Intersection
 import qualified Test.Sanity.Merging
 import qualified Test.Sanity.OverloadedRecordDot
@@ -39,6 +40,7 @@ main = defaultMain $ testGroup "large-anon" [
         , Test.Sanity.AllFields.tests
         , Test.Sanity.Applicative.tests
         , Test.Sanity.Simple.tests
+        , Test.Sanity.Interop.tests
         , Test.Sanity.PolyKinds.tests
         , Test.Sanity.CheckIsSubRow.tests
         , Test.Sanity.Discovery.tests

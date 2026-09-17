@@ -71,7 +71,9 @@ import Data.Record.Generic
 import Data.Record.Generic.Eq
 import Data.Record.Generic.JSON
 import Data.Record.Generic.NFData
+import Data.Record.Generic.Serialise
 import Data.Record.Generic.Show
+import Codec.Serialise (Serialise(..))
 import Data.Tagged
 import GHC.Exts (Any)
 import GHC.OverloadedLabels
@@ -277,6 +279,10 @@ instance RecordConstraints r ToJSON => ToJSON (Record r) where
 
 instance RecordConstraints r FromJSON => FromJSON (Record r) where
   parseJSON = gparseJSON
+
+instance RecordConstraints r Serialise => Serialise (Record r) where
+  encode = gencode
+  decode = gdecode
 
 {-------------------------------------------------------------------------------
   Support for @typelet@

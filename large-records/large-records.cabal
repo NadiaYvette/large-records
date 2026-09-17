@@ -42,6 +42,12 @@ library
       Data.Record.Plugin.Options
       Data.Record.Plugin.Runtime
       Data.Record.Overloading
+      Data.Record.CBOR
+      Data.Record.JSON
+      Data.Record.Optics
+      Data.Record.Protobuf
+      Data.Record.Serialise
+      Data.Record.Vinyl
 
   other-modules:
 
@@ -118,6 +124,7 @@ test-suite test-large-records
       Test.Record.Sanity.Optics.SingleModule
       Test.Record.Sanity.Optics.SplitModule
       Test.Record.Sanity.Optics.SplitModule.RecordDef
+      Test.Record.Sanity.Interop
       Test.Record.Sanity.RecordConstruction
       Test.Record.Sanity.Strictness
       Test.Record.Sanity.StrictnessStrictData
@@ -134,11 +141,15 @@ test-suite test-large-records
       base
     , large-records
 
+    , aeson
+    , bytestring
+    , cborg
     , generic-deriving
     , large-generics
     , mtl
     , newtype
     , record-hasfield
+    , serialise
     , tasty
     , tasty-hunit
     , template-haskell

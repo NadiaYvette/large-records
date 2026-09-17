@@ -1,3 +1,5 @@
+with-compiler: ghc-9.8.4
+
 packages: typelet
 packages: large-anon
 packages: large-generics

@@ -64,6 +64,7 @@ module Data.Record.Anon.Advanced (
   , A.InRow(..)
   , reifySubRow
   , reflectSubRow
+  , A.RecordConstraints
     -- * Existential records
   , A.SomeRecord(..)
   , someRecord
