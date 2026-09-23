@@ -1,0 +1,81 @@
+cabal-version:      2.4
+name:               beam-large-anon
+version:            0.1.0
+synopsis:           Integration of large-anon anonymous records with beam-core.
+description:        This package provides the necessary instances and combinators that
+                    make it possible to use anonymous records defined with large-anon
+                    as beam database tables or beam databases.
+                    .
+                    Anonymous records are wrapped in the 'AnonTable' newtype, which
+                    provides 'Beamable', 'Table', 'Database', and related beam
+                    instances via the large-anon generic machinery, without relying
+                    on GHC.Generics.
+license:            BSD-3-Clause
+author:             Well-Typed LLP
+maintainer:         edsko@well-typed.com
+category:           Database
+extra-doc-files:    CHANGELOG.md
+
+source-repository head
+  type:     git
+  location: https://github.com/well-typed/large-records
+
+library
+  exposed-modules:
+      Data.Record.Anon.Beam
+  other-modules:
+      Data.Record.Anon.Beam.Internal.Constraints
+      Data.Record.Anon.Beam.Internal.DbSettings
+      Data.Record.Anon.Beam.Internal.FromBackendRow
+      Data.Record.Anon.Beam.Internal.ZipDatabase
+      Data.Record.Anon.Beam.Internal.ZipTables
+  build-depends:
+      base           >= 4.14     && < 4.24
+    , large-anon     >= 0.3      && < 0.4
+    , large-generics >= 0.2      && < 0.3
+    , text           >= 1.2      && < 2.2
+    , microlens      >= 0.4      && < 0.6
+
+      -- lower bound on beam-core is necessary
+      -- see https://github.com/haskell-beam/beam/issues/585
+    , beam-core      >= 0.11     && < 0.12
+  hs-source-dirs:
+      src
+  default-language:
+      Haskell2010
+  ghc-options:
+      -Wall
+      -Wredundant-constraints
+      -Wunused-packages
+      -fmax-refinement-hole-fits=0
+
+test-suite test-beam-large-anon
+  type:
+      exitcode-stdio-1.0
+  main-is:
+      TestBeamLargeAnon.hs
+  other-modules:
+      Test.Record.Anon.Beam.Tutorial1
+      Test.Record.Anon.Beam.Zipping
+      Test.Record.Anon.Beam.Util.SQLite
+  hs-source-dirs:
+      test
+  default-language:
+      Haskell2010
+  build-depends:
+      base
+    , beam-core
+    , beam-large-anon
+    , beam-sqlite    >= 0.7 && < 0.8
+    , large-anon
+    , sqlite-simple
+    , optics-core
+    , tasty
+    , tasty-hunit
+    , text
+    , time
+  ghc-options:
+      -Wall
+      -Wredundant-constraints
+      -fmax-refinement-hole-fits=0
+      -fplugin=Data.Record.Anon.Plugin

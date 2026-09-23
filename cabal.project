@@ -5,6 +5,7 @@ packages: large-anon
 packages: large-generics
 packages: large-records
 packages: beam-large-records
+packages: beam-large-anon
 
 if impl(ghc <9)
   packages: large-records-benchmarks
@@ -23,6 +24,9 @@ package large-anon
   flags: +enable-core-lint
 
 package beam-large-records
+  tests: True
+
+package beam-large-anon
   tests: True
 
 package typelet
